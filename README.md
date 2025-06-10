@@ -14,4 +14,5 @@ ongeveer 200 woorden -> methode, flowschema
 > *resultaten*
 > 
 ongeveer 200 woorden, incl **aanbevelingen**
-> hsa05323.RA_demo.png
+>goi
+>
