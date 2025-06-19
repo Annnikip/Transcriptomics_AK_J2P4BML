@@ -1,0 +1,537 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww28600\viewh15260\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 setwd("Desktop/transcriptomics/Raw_Wcs_Transcriptomics/project RA transcriptomics/")\
+getwd()\
+install.packages('BiocManager')\
+BiocManager::install('Rsubread')\
+library(Rsubread)\
+browseVignettes('Rsubread')\
+\{\
+buildindex(\
+  basename = 'ref_humanBETER',\
+  reference = 'HumanSET/Homo_sapiens.GRCh38.dna_sm.toplevel.fa.gz',\
+  memory = 10000,\
+  indexSplit = TRUE)\
+\
+align.norm1 <- align(index = "ref_humanBETER", \
+                     readfile1 = "RAtranscript/Data_RA_raw/SRR4785819_1_subset40k_S1.fastq", \
+                     readfile2="RAtranscript/Data_RA_raw/SRR4785819_2_subset40k_S1R.fastq",\
+                     output_file = "norm1.BAM")\
+\
+\{align.norm1 <- align(index = "ref_humanBETER", \
+                    readfile1 = "RAtranscript/Data_RA_raw/SRR4785819_1_subset40k_S1.fastq", \
+                    readfile2="RAtranscript/Data_RA_raw/SRR4785819_2_subset40k_S1R.fastq",\
+                    output_file = "norm1.BAM")\
+\
+align.norm2 <- align(index = "ref_humanBETER", \
+                     readfile1 = "RAtranscript/Data_RA_raw/SRR4785820_1_subset40k_S2.fastq", \
+                     readfile2="RAtranscript/Data_RA_raw/SRR4785820_2_subset40k_S2R.fastq",\
+                     output_file = "norm2.BAM")\
+align.norm3 <- align(index = "ref_humanBETER", \
+                     readfile1 = "RAtranscript/Data_RA_raw/SRR4785828_1_subset40k_S3.fastq", \
+                     readfile2="RAtranscript/Data_RA_raw/SRR4785828_2_subset40k_S3R.fastq",\
+                     output_file = "norm3.BAM")\
+align.norm4 <- align(index = "ref_humanBETER", \
+                     readfile1 = "RAtranscript/Data_RA_raw/SRR4785831_1_subset40k_S4.fastq", \
+                     readfile2="RAtranscript/Data_RA_raw/SRR4785831_2_subset40k_S4R.fastq",\
+                     output_file = "norm4.BAM")\
+\
+align.RA1 <- align(index = "ref_humanBETER", \
+                     readfile1 = "RAtranscript/Data_RA_raw/SRR4785979_1_subset40k_S5.fastq", \
+                     readfile2="RAtranscript/Data_RA_raw/SRR4785979_2_subset40k_S5R.fastq",\
+                     output_file = "RA1.BAM")\
+align.RA2 <- align(index = "ref_humanBETER", \
+                   readfile1 = "RAtranscript/Data_RA_raw/SRR4785980_1_subset40k_S6.fastq", \
+                   readfile2="RAtranscript/Data_RA_raw/SRR4785980_2_subset40k_S6R.fastq",\
+                   output_file = "RA2.BAM")\
+\
+align.RA3 <- align(index = "ref_humanBETER", \
+                   readfile1 = "RAtranscript/Data_RA_raw/SRR4785986_1_subset40k_S7.fastq", \
+                   readfile2="RAtranscript/Data_RA_raw/SRR4785986_2_subset40k_S7R.fastq",\
+                   output_file = "RA3.BAM")\
+\
+align.RA4 <- align(index = "ref_humanBETER", \
+                   readfile1 = "RAtranscript/Data_RA_raw/SRR4785988_1_subset40k_S8.fastq", \
+                   readfile2="RAtranscript/Data_RA_raw/SRR4785988_2_subset40k_S8R.fastq",\
+                   output_file = "RA4.BAM")\
+\}\}\
+library(Rsamtools)\
+samples <- c('norm1', 'norm2', 'norm3', 'norm4', 'RA1', 'RA2','RA3','RA4')\
+lapply(samples, function(s) \{sortBam(file = paste0(s, '.BAM'), destination = paste0(s, '.sorted'))\
+\})\
+lapply(samples, function(s) \{indexBam(file = paste0(s, '.sorted.bam'))\
+\})\
+\
+library(readr)\
+library(dplyr)\
+library(Rsubread)\
+####\
+unzip("ncbi_datasethoi.zip",exdir="gft")\
+\
+  allsamples <- c("norm1.BAM", "norm2.BAM", "norm3.BAM", "norm4.BAM", "RA1.BAM", "RA2.BAM","RA3.BAM","RA4.BAM")\
+allsamples\
+count_matrix <- featureCounts(\
+  files = allsamples,\
+  annot.ext = "Homo_sapiens.GRCh38.114.gtf",\
+  isPairedEnd = TRUE,\
+  isGTFAnnotationFile = TRUE,\
+  GTF.attrType = "gene_id",\
+  useMetaFeatures = TRUE\
+) \
+\
+####countmatrix\
+\{\
+counts=count_matrix$counts\
+colnames(counts)=c("GeneID","Norm1","Norm2","Norm3","Norm4","RA1","RA2","RA3","RA4")\
+rownames(counts)=counts[,1]\
+\
+countsNEW=counts[,-1]\
+head(countsNEW)\
+head(counts)\
+\
+countsNEW\
+counts\
+write.csv(counts,"countdracula.csv")\
+head(counts)\
+\
+counts=read.csv("count_matrix2.csv",row.names = 1)\
+head(countsDrac)\
+countDrac=read.csv("countdracula.csv")\
+\}\
+\
+####TREATMENT\
+\{\
+treatment=c("NORM","NORM","NORM","NORM","RA","RA","RA","RA")\
+TREATMENT_TABLE=data.frame(treatment)\
+head(TREATMENT_TABLE)\
+rownames(TREATMENT_TABLE)=c('norm1','norm2','norm3','norm4','ra1','ra2','ra3','ra4')\
+\}\
+\
+####Library####\
+\{\
+library(DESeq2)\
+BiocManager::install('DESeq2')\
+BiocManager::install('KEGGREST')\
+a\
+library(DESeq2)\
+library(KEGGREST)\
+\}\
+\
+#even chat gpt\
+drac=read.csv("count_matrix.txt",row.names = 1,header = TRUE,sep="\\t")\
+dds= DESeqDataSetFromMatrix(countData=drac,colData=TREATMENT_TABLE,design=~treatmemt)\
+head(drac)\
+\
+dim(drac)\
+#29407/8\
+colnames(drac)\
+#[1] "SRR4785819" "SRR4785820" "SRR4785828" "SRR4785831"\
+#[5] "SRR4785979" "SRR4785980" "SRR4785986" "SRR4785988"\
+\
+\
+\
+####dds gemeuk####\
+\{\
+dds= DESeqDataSetFromMatrix(countData = drac,colData = TREATMENT_TABLE,design = ~treatment)\
+\
+class(drac)\
+str(drac)\
+dim(drac)\
+\
+drac_mat=as.matrix(drac)\
+mode(drac_mat)="numeric"\
+class(drac_mat)\
+dim(drac_mat)\
+\
+dim(TREATMENT_TABLE)\
+rownames(TREATMENT_TABLE)\
+\
+samples=colnames(drac)\
+samples\
+treatment=c("ctrl1","ctrl2","ctrl3","ctrl4","RA1","RA2",\
+          "RA3","RA4")\
+TREATMENT_TABLE\
+dim(TREATMENT_TABLE)\
+rownames(TREATMENT_TABLE)=samples\
+colnames(drac_mat)\
+rownames(TREATMENT_TABLE)\
+\
+dds=DESeqDataSetFromMatrix(countData = drac_mat,colData = TREATMENT_TABLE,design = ~treatment)\
+\
+drac_int=round(drac_mat)\
+mode(drac_int)="numeric"\
+storage.mode(drac_int)="integer"\
+head(drac_int)\
+head(drac_mat)\
+\
+dds=DESeqDataSetFromMatrix(countData = drac_int,colData = TREATMENT_TABLE,design = ~treatment)\
+treatment\
+dim(treatment)\
+mode(treatment)\
+\
+TREATMENT_TABLE$treatment=factor(TREATMENT_TABLE$treatment)\
+str(TREATMENT_TABLE$treatment)\
+levels(TREATMENT_TABLE$treatment)\
+\
+dds=(DESeq(dds))\
+resultatendds=results(dds)\
+write.table(resultatendds,file='resultatenRA.csv',row.names = TRUE,col.names = TRUE)\
+\
+\
+sum(resultatendds$padj < 0.05 & resultatendds$log2FoldChange > 1, na.rm = TRUE)\
+sum(resultatendds$padj < 0.05 & resultatendds$log2FoldChange < -1, na.rm = TRUE)\
+\
+\
+#1, na.rm = TRUE)\
+#[1] 2085\
+#-1,na.rm=TRUE\
+#[1] 2487\
+\
+#Tellen het antal genen dat statisctish significant is veranderd en minstens een verdubbeling of halevering laat zien\
+#padj<0.05 betekent dat de verndering significant is (met een gecorrigeerde p waarde)\
+#logfoldchange minstens een verdubbeling in expressie\
+#de -1`betekent dat er een halvering is\
+\
+highFC=resultatendds[order(resultatendds$log2FoldChange,decreasing = TRUE),]\
+lowstFC=resultatendds[order(resultatendds$log2FoldChange,decreasing = FALSE),]\
+lowstP=resultatendds[order(resultatendds$padj,decreasing = FALSE),]\
+\
+head(lowstP)\
+#log2 fold change (MLE): treatment RA vs NORM \
+#Wald test p-value: treatment RA vs NORM \
+#DataFrame with 6 rows and 6 columns\
+#baseMean log2FoldChange     lfcSE      stat\
+#<numeric>      <numeric> <numeric> <numeric>\
+#  ANKRD30BL 17429.740      -10.11637  0.685638  -14.7547\
+#MT-ND6    10154.831      -11.42182  0.824819  -13.8477\
+#RAB3IL1     984.004       -6.07755  0.438615  -13.8562\
+#SLC9A3R2    484.192       -5.61630  0.423038  -13.2761\
+#ZNF598      302.503       -4.43591  0.353204  -12.5590\
+#SRGN       2014.265        3.26256  0.291452   11.1942\
+#pvalue        padj\
+#<numeric>   <numeric>\
+#  ANKRD30BL 2.87043e-49 5.72335e-45\
+#MT-ND6    1.31389e-43 8.73255e-40\
+#RAB3IL1   1.16611e-43 8.73255e-40\
+#SLC9A3R2  3.18570e-40 1.58799e-36\
+#ZNF598    3.54607e-36 1.41410e-32\
+#SRGN      4.35524e-29 1.44732e-25\
+\
+\}\
+\
+if(!requireNamespace("EnhancedVolcano",quietly = TRUE))\{BiocManager::install(\
+  "EnhancedVolcano")\
+\}\
+library(EnhancedVolcano)\
+\
+library(ggplot2)\
+library(ggrepel)\
+\
+EnhancedVolcano(resultatendds,\
+                lab=rownames(resultatendds),\
+                x='log2FoldChange',\
+                y='padj')\
+\
+#alternatieve plot zonde rpwaarde cutoff alle genen zichtbaar\
+EnhancedVolcano(resultatendds,\
+                lab = rownames(resultatendds),\
+                x='log2FoldChange',\
+                y='padj',\
+                pCutoff=0)\
+dev.copy(png,'volcanoplotwc.png',width=8,height=10,units='in',res=500)\
+dev.off()\
+\
+if(!requireNamespace("pathview",quietly = TRUE))\{BiocManager::install("pathview")\}\
+\
+#hsa04060 is een kegg pathway die relevant zou kunnen zijn\
+#is een cytokine cytokine receptor interactie dat relevant is bij RA\
+library(pathview)\
+\
+resultatendds[1]=NULL\
+resultatendds[2:5]=NULL\
+head(resultatendds)\
+\
+pathview(gene.data=resultatendds,pathway.id="hsa04060",species="hsa",gene.idtype = "KEGG",limit=list(gene=5))\
+\
+#kegglink even vragen\
+#GOverrijkingsanalyswe, in RSTUDIO< met Clusterprofiler.\
+\
+BiocManager::install(c("clusterProfiler","org.Hs.eg.db","AnnotationDbi"))\
+\
+library(clusterProfiler) #voert verijkingstests uit\
+library(org.Hs.eg.db) #bevat mapping tussen tabellen voor menselijke genen\
+library(AnnotationDbi) # algemene functies om annotatie-databases te raadplegen\
+library(DESeq2)\
+resultatendds\
+sigdds=subset(resultatendds, padj <0.05)\
+\
+ddsres=DESeq(resultatendds)\
+class(resultatendds)\
+\
+head(ddsres)\
+head(resultatendds)\
+\
+sigdds=subset(ddsres,padj<0.05)\
+head(sigdds)\
+head(ddsres)\
+\
+\
+genes_sig=rownames(sigdds)\
+genes_sig\
+\
+length(genes_sig) #5119 significante genen\
+\
+entrez_ids=mapIds(org.Hs.eg.db,\
+                  keys= genes_sig,\
+                  column="ENTREZID",\
+                  keytype="SYMBOL",\
+                  multiVals="first")\
+entrez_ids=entrez_ids[!is.na(entrez_ids)]\
+length(entrez_ids) #5074\
+\
+#mapIds zoekt in org.Hs.eg.db voor elke symbol die correspondeert entrezid\
+#multivals = first pakt bij een symbol het eerste gevnden entrez id\
+#na's verwijderen is essentieel anders krijg je foutmeldingen in enrichGO\
+\
+#bij het uitvoeren van GOverrijkingsanalyse, rihten we ons op de biological process\
+\
+ego_bp=enrichGO(gene= entrez_ids,\
+                OrgDb = org.Hs.eg.db,\
+                keyType = "ENTREZID",\
+                ont="BP", #biological proces\
+                pAdjustMethod = "BH", #benjamini hochberg\
+                pvalueCutoff = 0.05,\
+                qvalueCutoff = 0.10,\
+                readable = TRUE) #zet entrezid's terug naar symbol in de output\
+#gene=vector van entrez id's\
+#orgdb=annotatie database\
+#keytype=soort id\
+#ont=bp/mf/cc, bp genomen omdat biological proces\
+#pAdjustMethod: methode voor correctie multiple testing\
+#pvalueCutoff en qvalueCutoff: drempels om alleen de meest relevante GO-terminen te tonen\
+#readable = TRUE: zorgt dat de output kolom geneid in symbol namen toont\
+\
+\
+head(ego_bp)\
+\
+\
+ego_bp_sorted=ego_bp[order(ego_bp@result$p.adjust),]\
+head(ego_bp_sorted)\
+\
+dotplot(ego_bp,showCategory=10)+\
+  ggtitle("Go Biological proces verrijking top20")\
+\
+barplot(ego_bp,showCategory = 10,title="GO BP verrijkte termen")\
+\
+library(enrichplot)\
+emapplot(pairwise_termsim(ego_bp))\
+\
+\
+ego_mf <- enrichGO(gene = entrez_ids,\
+                   OrgDb = org.Hs.eg.db,\
+                   keyType = "ENTREZID",\
+                   ont = "MF",\
+                   pAdjustMethod = "BH",\
+                   pvalueCutoff = 0.05,\
+                   qvalueCutoff = 0.10,\
+                   readable = TRUE)\
+barplot(ego_mf, showCategory = 10, title = "GO MF verrijking")\
+\
+\
+all_genes=mapIds(org.Hs.eg.db,\
+                 keys=rownames(ddsres),\
+                 column = "ENTREZID",\
+                 keytype = "SYMBOL",\
+                 multiVals = "first")\
+all_genes=all_genes[!is.na(all_genes)]\
+ego_bp_customBG <- enrichGO(gene         = entrez_ids,\
+                            universe     = all_genes,\
+                            OrgDb        = org.Hs.eg.db,\
+                            keyType      = "ENTREZID",\
+                            ont          = "BP",\
+                            pAdjustMethod= "BH",\
+                            pvalueCutoff = 0.05,\
+                            qvalueCutoff = 0.10,\
+                            readable     = TRUE)\
+ego_bp_customBG\
+head(ego_bp_customBG)\
+\
+keggLink("pathway","hsa:05323")\
+\
+library(KEGGREST)\
+\
+ra_genes=keggLink("hsa","path:hsa05323")\
+head(ra_genes)\
+length(ra_genes)\
+entrez_ra=sub("hsa:","",names(ra_genes))\
+entrez_ra\
+library(org.Hs.eg.db)\
+symbol_ra=mapIds(org.Hs.eg.db,\
+                 keys=entrez_ra,\
+                 column="SYMBOL",\
+                 keytype="ENTREZID",\
+                 multiVal="first")\
+symbol_ra\
+\
+if(!requireNamespace("clusterProfiler",quietly=TRUE))\{BiocManager::install("clusterProfiler")\}\
+library(clusterProfiler)\
+ra_genes=keggLink("hsa","path:hsa05323")\
+length(ra_genes)\
+head(ra_genes)\
+\
+raw_ids=names(ra_genes)\
+entrez_ra=sub("^hsa:","",raw_ids)\
+head(entrez_ra)\
+length(entrez_ra)\
+\
+library(org.Hs.eg.db)\
+valid_ids=keys(org.Hs.eg.db,keytype="ENTREZID")\
+sum(entrez_ra%in%valid_ids)\
+sum(!(entrez_ra%in%valid_ids))\
+\
+\
+valid_ids=keys(org.Hs.eg.db,keytype="ENTREZID")\
+head(valid_ids,20)\
+length(valid_ids)\
+\
+sum(!(entrez_ra%in%valid_ids))\
+good_entrez_ra=entrez_ra[entrez_ra %in% valid_ids]\
+length(good_entrez_ra)\
+\
+\
+symbol_ra=mapIds(org.Hs.eg.db,\
+                 keys=entrez_ra,\
+                 column = "SYMBOL",\
+                 keytype="ENTREZID",\
+                 multiVals="first")\
+symbol_ra <- mapIds(org.Hs.eg.db,\
+                    keys   = good_entrez_ra,\
+                    column = "SYMBOL",\
+                    keytype= "ENTREZID",\
+                    multiVals = "first")\
+\
+head(entrez_ra,10)\
+if(length(entrez_ra)>=10)\{sample(entrez_ra,10)\}\
+valid_ids=keys(org.Hs.eg.db,keytype="ENTREZID")\
+head(valid_ids,10)\
+head(entrez_ra,10)\
+\
+\
+ra_genes=keggLink("hsa","path:hsa05323")\
+\
+library(clusterProfiler)\
+ra_genes=keggLink("hsa","path:hsa05323")\
+raw_ids=names(ra_genes)\
+length(raw_ids)\
+head(raw_ids,10)\
+\
+library(clusterProfiler)\
+ra_genes=keggLink("hsa","path:hsa05323")\
+length(ra_genes)\
+unique(as.vector(ra_genes))\
+\
+\
+raw_ids=names(ra_genes)\
+head(raw_ids,10)\
+length(raw_ids)\
+unique(as.vector(ra_genes))\
+\
+\
+ra_genes <- keggLink("hsa", "path:hsa05323")\
+head(ra_genes,10)\
+\
+\{\
+# \'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\
+# (A) Laad clusterProfiler en pak ra_genes\
+library(clusterProfiler)\
+ra_genes <- keggLink("hsa", "path:hsa05323")\
+\
+# (B) Hoeveel entries?\
+print(length(ra_genes))       # geeft bv. 95\
+\
+# (C) Toon unieke waarden in ra_genes (moet \'93path:hsa05323\'94 zijn)\
+print(unique(as.vector(ra_genes)))\
+\
+# (D) Haal de *namen* eruit (de KEGG-entrez-ID\'92s)\
+raw_ids <- names(ra_genes)\
+\
+# (E) Toon de eerste 10 namen\
+print(head(raw_ids, 10))\
+\
+# (F) Toon ook een willekeurige steekproef (om te controleren)\
+print(sample(raw_ids, 10))\
+# \'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\'96\
+\}\
+\
+unique(names(ra_genes))\
+head(as.vector(ra_genes),10)\
+\
+raw_values=as.vector(ra_genes)\
+entrez_ra=sub("^hsa:","",raw_values)\
+head(entrez_ra,10)\
+length(entrez_ra)\
+\
+valid_ids=keys(org.Hs.eg.db,keytype="ENTREZID")\
+sum(entrez_ra %in% valid_ids)\
+sum(!(entrez_ra %in% valid_ids))\
+good_ra=entrez_ra[entrez_ra %in% valid_ids]\
+length(good_ra)\
+\
+\
+symbol_ra=mapIds(org.Hs.eg.db,\
+                 keys = good_ra,\
+                 column = "SYMBOL",\
+                 keytype = "ENTREZID",\
+                 multiVals = "first")\
+symbol_ra=symbol_ra[!is.na(symbol_ra)]\
+length(symbol_ra)\
+head(symbol_ra,10)\
+\
+ra_genes=keggLink("hsa","path:hsa05323")\
+\
+ids_w_prefix=as.vector(ra_genes)\
+entrez_ra=sub("^hsa:","",ids_w_prefix)\
+library(org.Hs.eg.db)\
+valid_ids=keys(org.Hs.eg.db,keytype="ENTREZID")\
+good_ra=entrez_ra[entrez_ra %in% valid_ids]\
+symbol_ra=mapIds(org.Hs.eg.db,\
+                 keys=good_ra,\
+                 column="SYMBOL",\
+                 keytype="ENTREZID",\
+                 multiVals="first")\
+symbol_ra=symbol_ra[!is.na(symbol_ra)]\
+\
+\
+library(pathview)\
+head(entrez_ra)\
+head(valid_ids)\
+head(symbol_ra)\
+\
+pathview(gene.data=resultatendds,\
+         pathway.id = "hsa05323",\
+         species = "hsa",\
+         gene.idtype = "SYMBOL",\
+         out.suffix="RA_demo")\
+head(highFC)\
+head(resultatendds)\
+head(entrez_ids)\
+head(entrez_ra)\
+head(entrez_ra_trimmed)\
+head(good_ra)\
+head(ids_w_prefix)\
+head(raw_ids)\
+head(raw_values)\
+head(symbol_ra)\
+\
+\
+\
+\
+\
+\
+\
+}
