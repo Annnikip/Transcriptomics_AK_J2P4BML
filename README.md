@@ -28,10 +28,9 @@ Deze workflow biedt inzicht in <code style="color:red">RA</code>-gerelateerde <c
 # Resultaten  
 
 ## Vulcano plot  
-Met de volcanoplot wordt op de x-as de <code style="color:fuchsia">log2-fold change</code> van genexpressie tussen twee condities gemeten. Dit geeft aan hoe <code style="color:red">sterk</code> een gen <em>verhoogd</em> of <em>verlaagd</em> wordt.  
+Met de [volcanoplot](figuren/Rplot01metcutoff.jpeg) wordt op de x-as de <code style="color:fuchsia">log2-fold change</code> van genexpressie tussen twee condities gemeten. Dit geeft aan hoe <code style="color:red">sterk</code> een gen <em>verhoogd</em> of <em>verlaagd</em> wordt.  
 De y-as toont de <code style="color:red">-log10 p-waarde</code>, deze geeft aan hoe <code style="color:red">statistisch significant</code> de verandering is.  
 De plot helpt om genen te identificeren die het meest relevant zijn voor het verschil tussen <code style="color:red">RA</code>-patiënten en gezonde controles.  
-<img src="/Users/anni/Desktop/github/resultaten/Rplot01metcutoff.jpeg" width="300" height="500">  
 Een interessant gen is <code style="color:fuchsia">SRGN</code> die aan de positieve kant van de log2-fold change hoog staat aan de -log10p-as.
 
 ## Barplot  
