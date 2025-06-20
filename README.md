@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/Users/anni/Desktop/github/plaatjes/genplaatje.png" alt="Transcriptomics Logo" width="600"/>
+  <img src="/genplaatje.png" alt="Transcriptomics Logo" width="600"/>
 </p>
 
 # <code style="color:fuchsia">Rheumatoïde artritis genexpressie getoond met transcriptomics</code>  
