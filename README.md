@@ -6,7 +6,15 @@
 <code style="color:pink">Verslag transcriptomics - Annabel Kip J2P4</code>
 
 # inhoud  
-`figuren/`
+- `data/patientendata/` – Dataset gebruikt om resultaten te verkrijgen
+- `data/BAMfiles` - BAM files
+- `scripts/` – RStudio script gebruikt om de resultaten te verkrijgen
+- `figuren/` - Verkregen figuren
+- `bronnen/` - gebruikte bronnen 
+- `README.md` - Document zodat de text leesbaar is
+- `assets/` - 
+- `data_stewardship/` - Competenties
+- `data/Genoom`- Menselijk genoom dat gebruikt is
 
 # inleiding  
 <code style="color:red">Reumatoïde artritis (RA)</code> is een chronische auto-immuunziekte waarbij <code style="color:fuchsia">ontstekingen</code> optreden in de gewrichten. Dit kan leiden tot <code style="color:red">weefselschade</code>, <code style="color:red">pijn</code> en uiteindelijk <code style="color:red">functieverlies</code>. Hoewel de klinische kenmerken van <code style="color:red">RA</code> goed bekend zijn, is de <code style="color:blue">moleculaire basis</code> van de ziekte slechts gedeeltelijk opgehelderd. Een benadering die helpt om deze mechanismen beter te begrijpen is <code style="color:fuchsia">transcriptomics</code>: de studie van <code style="color:fuchsia">genexpressie</code> op genoomschaal <code style="color:blue">(Woetzel et al., 2014)</code>. Door middel van technieken zoals <code style="color:green">RNA-sequencing</code> kunnen verschillen in <code style="color:fuchsia">genexpressie</code> tussen gezonde individuen en <code style="color:red">RA</code>-patiënten worden geïdentificeerd. Dit maakt het mogelijk om betrokken <code style="color:purple">signaalroutes</code>, <code style="color:purple">celtypes</code> en <code style="color:purple">biomarkers</code> in kaart te brengen.  
