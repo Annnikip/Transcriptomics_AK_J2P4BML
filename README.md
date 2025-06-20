@@ -12,7 +12,7 @@
 - `figuren/` - Verkregen figuren
 - `bronnen/` - gebruikte bronnen 
 - `README.md` - Document zodat de text leesbaar is
-- `assets/` - 
+- `assets/` - Overige afbeeldingen die gebruikt zijn voor de opmaak van het verslag
 - `data_stewardship/` - Competenties
 - `data/Genoom`- Menselijk genoom dat gebruikt is
 
