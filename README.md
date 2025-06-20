@@ -1,6 +1,6 @@
-p align="center">
+
   <img src="assets/genplaatje.png" alt="Transcriptomics Logo" width="600"/>
-</p>
+
 
 # <code style="color:fuchsia">Rheumatoïde artritis genexpressie getoond met transcriptomics</code>  
 <code style="color:pink">Verslag transcriptomics - Annabel Kip J2P4</code>
