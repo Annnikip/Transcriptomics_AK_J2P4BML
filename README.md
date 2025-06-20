@@ -1,4 +1,4 @@
-p align="center">More actions
+p align="center">
   <img src="/genplaatje.png" alt="Transcriptomics Logo" width="600"/>
 </p>
 
@@ -6,7 +6,7 @@ p align="center">More actions
 <code style="color:pink">Verslag transcriptomics - Annabel Kip J2P4</code>
 
 # inhoud  
-`hier komt nog iets`
+`figuren/`
 
 # inleiding  
 <code style="color:red">Reumatoïde artritis (RA)</code> is een chronische auto-immuunziekte waarbij <code style="color:fuchsia">ontstekingen</code> optreden in de gewrichten. Dit kan leiden tot <code style="color:red">weefselschade</code>, <code style="color:red">pijn</code> en uiteindelijk <code style="color:red">functieverlies</code>. Hoewel de klinische kenmerken van <code style="color:red">RA</code> goed bekend zijn, is de <code style="color:blue">moleculaire basis</code> van de ziekte slechts gedeeltelijk opgehelderd. Een benadering die helpt om deze mechanismen beter te begrijpen is <code style="color:fuchsia">transcriptomics</code>: de studie van <code style="color:fuchsia">genexpressie</code> op genoomschaal <code style="color:blue">(Woetzel et al., 2014)</code>. Door middel van technieken zoals <code style="color:green">RNA-sequencing</code> kunnen verschillen in <code style="color:fuchsia">genexpressie</code> tussen gezonde individuen en <code style="color:red">RA</code>-patiënten worden geïdentificeerd. Dit maakt het mogelijk om betrokken <code style="color:purple">signaalroutes</code>, <code style="color:purple">celtypes</code> en <code style="color:purple">biomarkers</code> in kaart te brengen.  
@@ -41,12 +41,9 @@ Een verhoging van lymfocyten differentiatie is typisch bij auto-immuunziekten zo
 
 ## KEGG pathway  
 Van <code style="color:red">hsa05323</code> is een KEGG pathway gemaakt  
-<img src="/Users/anni/Desktop/github/resultaten/hsa05323.RA_demo.png">  
-van [hsa05323]("hsa05323.png")  
 <code style="color:red">IL6</code> is roodgekleurd, wat wil zeggen dat deze meer voorkomt bij mensen met <code style="color:red">RA</code>. IL6 heeft volgens de KEGG pathway een gevolg naar <code style="color:red">inflammatie</code> en <code style="color:red">synovial pannus formatie</code>. Naast <code style="color:red">IL6</code> zijn <code style="color:red">GM-CSF</code>, <code style="color:red">IL1beta</code> en <code style="color:red">CCL5</code> ook verhoogd. Dit is een kenmerkend <code style="color:red">cytokineprofiel</code> voor mensen met <code style="color:red">RA</code>, en deze moleculen dragen bij aan de pathologie en symptomen van de ziekte.
 
-Van <code style="color:blue">hsa04060</code> is een KEGG pathway gemaakt  
-<img src="/Users/anni/Desktop/github/resultaten/hsa04060.pathview.png">  
+Van [hsa04060](figuren/hsa04060.pathview.png) is een KEGG pathway gemaakt  
 Deze afbeelding geeft een volledig beeld van alle <code style="color:red">cytokine-cytokine reacties</code> die betrokken zijn bij de betreffende data die verkregen is. Deze interacties zijn cruciaal voor het begrijpen van de immuunrespons en het inflammatoire proces bij <code style="color:red">RA</code>.
 
 # Conclusie  
