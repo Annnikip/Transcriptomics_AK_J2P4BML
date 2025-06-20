@@ -35,7 +35,7 @@ Een interessant gen is <code style="color:fuchsia">SRGN</code> die aan de positi
 
 ## Barplot  
 De barplot leest makkelijk af welke <code style="color:purple">pathway</code> het meeste voorkomt.  
-[barplot](plaatjes/GO MF barplot.jpeg)<img src="/Users/anni/Desktop/github/resultaten/barplot GO BP.jpeg" width="500" height="500">  
+[barplot](figuren/barplot GO BP.jpeg)
 <code style="color:fuchsia">Lymphocyte differentiation</code> heeft de hoogste count.  
 Een verhoging van lymfocyten differentiatie is typisch bij auto-immuunziekten zoals <code style="color:red">RA</code>. Lymfocyten differentiatie wordt gereguleerd door onder anderen <code style="color:red">cytokines</code>, die een belangrijke rol spelen in het immuunsysteem en ontstekingsreacties.
 
