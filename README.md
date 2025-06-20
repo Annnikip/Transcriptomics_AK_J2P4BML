@@ -42,7 +42,7 @@ Een verhoging van lymfocyten differentiatie is typisch bij auto-immuunziekten zo
 
 ## KEGG pathway  
 Van <code style="color:red">hsa05323</code> is een KEGG pathway gemaakt  
-<img src="/Users/anni/Desktop/github/resultaten/hsa05323.RA_demo.png">  
+van [hsa05323]("hsa05323.png")  
 <code style="color:red">IL6</code> is roodgekleurd, wat wil zeggen dat deze meer voorkomt bij mensen met <code style="color:red">RA</code>. IL6 heeft volgens de KEGG pathway een gevolg naar <code style="color:red">inflammatie</code> en <code style="color:red">synovial pannus formatie</code>. Naast <code style="color:red">IL6</code> zijn <code style="color:red">GM-CSF</code>, <code style="color:red">IL1beta</code> en <code style="color:red">CCL5</code> ook verhoogd. Dit is een kenmerkend <code style="color:red">cytokineprofiel</code> voor mensen met <code style="color:red">RA</code>, en deze moleculen dragen bij aan de pathologie en symptomen van de ziekte.
 
 Van <code style="color:blue">hsa04060</code> is een KEGG pathway gemaakt  
