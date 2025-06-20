@@ -31,7 +31,7 @@ Vervolgens is met <code style="color:blue">DESeq2</code> een countmatrix gegener
 
 Voor functionele interpretatie van de genexpressieresultaten is <code style="color:purple">KEGG-pathwayanalyse</code> uitgevoerd via de <code style="color:orange">clusterProfiler</code>- en <code style="color:purple">KEGGREST</code>-packages. Twee belangrijke paden werden hierbij nader bekeken: <code style="color:purple">hsa04060</code> (cytokine-cytokinereceptorinteractie) en <code style="color:purple">hsa05323</code> (reumatoïde artritis). Deze pathways zijn visueel weergegeven met <code style="color:red">pathview</code>. Humane genannotatie werd verzorgd met <code style="color:bruh">org.Hs.eg.db</code> en <code style="color:green">AnnotationDbi</code>, terwijl <code style="color:aqua">readr</code> en <code style="color:green">dplyr</code> ondersteuning boden bij data-invoer en manipulatie.  
 
-Deze [workflow](assets/.pdf) biedt inzicht in <code style="color:red">RA</code>-gerelateerde <code style="color:fuchsia">genexpressiepatronen</code> en relevante <code style="color:purple">biologische routes</code>.
+Deze [workflow](assets/Drawing 3.png) biedt inzicht in <code style="color:red">RA</code>-gerelateerde <code style="color:fuchsia">genexpressiepatronen</code> en relevante <code style="color:purple">biologische routes</code>.
 
 # Resultaten  
 
