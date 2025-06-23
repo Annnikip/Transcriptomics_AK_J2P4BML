@@ -1,0 +1,26 @@
+Waarom is dit een belangrijk onderdeel van onderzoek doen?
+Efficiënt databeheer voorkomt fouten en maakt een project overzichtelijk en herhaalbaar. Zeker in biomedisch onderzoek, waar veel data verwerkt wordt, is het essentieel dat analyses goed worden bijgehouden. Het helpt bij samenwerking, verantwoording van keuzes en het interpreteren van resultaten achteraf.
+
+Wat is een duidelijke mappenstructuur en waarom houd je dat aan?
+Een goede mappenstructuur verdeelt het project in logische onderdelen, zoals /data, /scripts, /results en /docs. Zo blijven ruwe data en bewerkte bestanden gescheiden en kun je alles snel terugvinden. Het voorkomt verwarring en zorgt ervoor dat bestanden niet per ongeluk overschreven of vergeten worden.
+
+Wat is een handige manier voor de naamgeving van bestanden en waarom?
+Bestandsnamen moeten beschrijvend en gestructureerd zijn, bijvoorbeeld deseq2_counts_RA_vs_CTRL_v2.csv. Zo zie je in één oogopslag wat het bestand bevat, bij welke vergelijking het hoort en welke versie het is. Dit voorkomt fouten en maakt analyses beter navolgbaar, ook bij samenwerking.
+
+Wat houdt versiebeheer in en waarom doe je dit?
+versiebeheer (bijvoorbeeld via GitHub) registreert alle wijzigingen in scripts en documenten. Hierdoor kun je teruggaan naar een vorige versie en zie je precies wie wat heeft aangepast. Het voorkomt verlies van werk en ondersteunt samenwerking binnen een onderzoeksteam.
+
+Hoe zorg je voor goede documentatie in scripts?
+Door in R-scripts voldoende commentaarregels toe te voegen, leg je uit wat elke stap doet en waarom. Dit maakt het script begrijpelijk voor anderen en ook voor jezelf bij later gebruik. Goede documentatie maakt reproduceerbaarheid mogelijk en verhoogt de betrouwbaarheid van de analyse.
+
+Wat voor platforms kan je gebruiken om scripts te delen?
+GitHub is een veelgebruikt platform voor het delen van scripts met versiebeheer en samenwerking. Ook GitLab of Bitbucket zijn geschikt. Voor het publiceren van interactieve analyses zijn RPubs en GitHub Pages handige alternatieven.
+
+Welke tools gebruik je voor data-analyse, zoals bijvoorbeeld voor het veilig opslaan van data?
+Voor analyse gebruik je bijvoorbeeld RStudio en de bijbehorende packages zoals DESeq2 of ggplot2. Niet-gevoelige data kan op GitHub worden opgeslagen, maar gevoelige data moet veilig opgeslagen worden via bijvoorbeeld OneDrive, SURFdrive of een versleutelde harde schijf. Veiligheid is hierbij essentieel.
+
+Hoe zou je omgaan met gevoelige of persoonlijke data?
+Gevoelige of persoonlijke data mag nooit openbaar gedeeld worden. Je moet deze altijd anonimiseren en opslaan op een beveiligde locatie. Dit is verplicht onder de AVG en voorkomt dat personen herleidbaar zijn.
+
+Wat is het belang van open data en het publiceren van datasets?
+Open data maakt onderzoek transparant, controleerbaar en herbruikbaar. Andere onderzoekers kunnen resultaten controleren of gebruiken voor vervolgonderzoek. Dit versnelt wetenschappelijke vooruitgang en verhoogt de betrouwbaarheid van publicaties.
